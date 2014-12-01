@@ -30,13 +30,13 @@ public class WebServer {
         
         Facade facade = Facade.getFacade(true);
         
-        Profile profile = new Profile("Michael", "larsen_max@hotmail.com", "1234", null, "student");
-        facade.addPersonFromGSON(gson.toJson(michael));
+        Profile profile1 = new Profile("MichaelLarsen", "larsen_max@hotmail.com", "1234", null, "student");
+        facade.addProfileFromGSON(gson.toJson(profile1));
+        Profile profile2 = new Profile("EmilAndreas", "larsen_max@hotmail.com", "1234", null, "student");
+        facade.addProfileFromGSON(gson.toJson(profile2));
         
         HttpServer server = HttpServer.create(new InetSocketAddress(ip, port), 0);
-        server.createContext("/", new FileHandler());
-        server.createContext("/Person", new PersonHandler());
-        server.createContext("/Role", new RoleHandler());
+        server.createContext("/Profiles", new ProfileHandler());
         server.setExecutor(null); // Use the default executor
         server.start();
         System.out.println("Started the server, listening on:");

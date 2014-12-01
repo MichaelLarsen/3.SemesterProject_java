@@ -12,12 +12,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Michael
  */
 @Entity
+@NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p")
 public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -50,12 +52,12 @@ public class Profile implements Serializable {
         this.role = role;
     }
 
-    public String getE_mail() {
-        return e_mail;
+    public String getEmail() {
+        return email;
     }
 
     public void setE_mail(String e_mail) {
-        this.e_mail = e_mail;
+        this.email = e_mail;
     }
 
     public String getPw() {
@@ -83,11 +85,11 @@ public class Profile implements Serializable {
     }
 
     public String getUsername() {
-        return username;
+        return user_name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.user_name = username;
     }
 
     public Long getId() {
@@ -118,7 +120,7 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Profile[ id=" + id + " ]";
+        return "{\"user_name\":" + "\"" + user_name + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + pw + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role +"}";
     }
     
 }

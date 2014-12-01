@@ -2,10 +2,12 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.Profile;
 import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,64 +30,48 @@ public class Facade implements FacadeInterface {
     }
 
     @Override
-    public String getPersonsAsJSON() {
+    public String getProfilesAsJSON() {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Person.getPersonAll");
-            Collection<Person> personList = query.getResultList();
-            String personListJson = gson.toJson(personList);
-            return personListJson;
+            Query query = em.createNamedQuery("Profile.getProfileAll");
+            Collection<Profile> profileList = query.getResultList();
+            String profileListJson = gson.toJson(profileList);
+            return profileListJson;
         } finally {
             em.close();
         }
     }
 
     @Override
-    public String getPersonAsJSON(long id) {
-        EntityManager em = emf.createEntityManager();
-        Person person = null;
-        try {
-            person = em.getReference(Person.class, id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            em.close();
-        }
-        return gson.toJson(person);
+    public String getProfileAsJSON(long id) {
+//        EntityManager em = emf.createEntityManager();
+//        Person person = null;
+//        try {
+//            person = em.getReference(Person.class, id);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            em.close();
+//        }
+//        return gson.toJson(person);
+        return null;
     }
 
     @Override
-    public Person addPersonFromGSON(String json) {
-        EntityManager em = emf.createEntityManager();
-        Person person = gson.fromJson(json, Person.class);
-
-        em.getTransaction().begin();
-        try {
-            em.persist(person);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return person;
-    }
-
-    public int dropTables() {
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            Query query1 = em.createNamedQuery("RoleSchool.dropAll");
-            Query query2 = em.createNamedQuery("Person.dropAll");
-            int rowsAffected = query1.executeUpdate();
-            rowsAffected += query2.executeUpdate();
-            em.getTransaction().commit();
-            return rowsAffected;
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return 0;
+    public Profile addProfileFromGSON(String json) {
+//        EntityManager em = emf.createEntityManager();
+//        Person person = gson.fromJson(json, Person.class);
+//
+//        em.getTransaction().begin();
+//        try {
+//            em.persist(person);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//        return person;
+        return null;
     }
 }
