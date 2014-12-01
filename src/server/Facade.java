@@ -3,6 +3,9 @@ package server;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.util.Collection;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -62,57 +65,6 @@ public class Facade implements FacadeInterface {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return person;
-    }
-
-    @Override
-    public RoleSchool addRoleFromGSON(String json, long id) {
-        EntityManager em = emf.createEntityManager();
-        RoleSchool role = gson.fromJson(json, RoleSchool.class);
-        if (role.getRoleName().equals("Student")) {
-            role = gson.fromJson(json, Student.class);
-        }
-        if (role.getRoleName().equals("Teacher")) {
-            role = gson.fromJson(json, Teacher.class);
-        }
-        if (role.getRoleName().equals("AssistantTeacher")) {
-            role = gson.fromJson(json, AssistantTeacher.class);
-        }
-        Person person = null;
-
-        em.getTransaction().begin();
-        try {
-            person = em.find(Person.class, id);
-            role.setPerson(person);
-            person.addRole(role);
-            em.persist(role);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-        return role;
-    }
-
-    @Override
-    public Person delete(long id) {
-        EntityManager em = emf.createEntityManager();
-        Person person = null;
-
-        em.getTransaction().begin();
-        try {
-            person = em.find(Person.class, id);
-            em.remove(person);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            em.getTransaction().rollback();
-            return null;
         } finally {
             em.close();
         }

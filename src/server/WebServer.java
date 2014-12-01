@@ -3,6 +3,7 @@ package server;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import entities.Profile;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -29,7 +30,7 @@ public class WebServer {
         
         Facade facade = Facade.getFacade(true);
         
-        Person michael = new Person("Michael", "Larsen", "12345678", "studerende@cphbusiness.dk");
+        Profile profile = new Profile("Michael", "larsen_max@hotmail.com", "1234", null, "student");
         facade.addPersonFromGSON(gson.toJson(michael));
         
         HttpServer server = HttpServer.create(new InetSocketAddress(ip, port), 0);
