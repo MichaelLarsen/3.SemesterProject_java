@@ -15,7 +15,7 @@ import java.io.OutputStream;
 
 /**
  *
- * @author Michael
+ * @author Michael, Sebastian, Emil og Andreas
  */
 class ProfileHandler implements HttpHandler {
 

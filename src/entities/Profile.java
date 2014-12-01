@@ -17,7 +17,7 @@ import javax.persistence.NamedQuery;
 
 /**
  *
- * @author Michael
+ * @author Michael, Sebastian, Emil og Andreas
  */
 @Entity
 @NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p")
