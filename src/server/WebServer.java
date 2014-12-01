@@ -16,10 +16,7 @@ public class WebServer {
     private static int port = 8080;
     private static String ip = "127.0.0.1";
     private static final Gson gson = new Gson();
-    /**
-     * @param args the command line arguments
-     * @throws java.io.IOException
-     */
+
     public static void main(String[] args) throws IOException
     {
         if (args.length == 2)

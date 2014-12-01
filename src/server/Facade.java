@@ -17,7 +17,7 @@ public class Facade implements FacadeInterface {
 
     private final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     private static Facade instance = new Facade();
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("KA_InheritancePU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("3.SemesterProject_javaPU");
 
     private Facade() {
     }
