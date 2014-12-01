@@ -59,19 +59,18 @@ public class Facade implements FacadeInterface {
 
     @Override
     public Profile addProfileFromGSON(String json) {
-//        EntityManager em = emf.createEntityManager();
-//        Person person = gson.fromJson(json, Person.class);
-//
-//        em.getTransaction().begin();
-//        try {
-//            em.persist(person);
-//            em.getTransaction().commit();
-//        } catch (Exception e) {
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return person;
-        return null;
+        EntityManager em = emf.createEntityManager();
+        Profile profile = gson.fromJson(json, Profile.class);
+
+        em.getTransaction().begin();
+        try {
+            em.persist(profile);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return profile;
     }
 }

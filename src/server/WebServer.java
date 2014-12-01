@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpServer;
 import entities.Profile;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Date;
 
 /**
  *
@@ -27,11 +28,15 @@ public class WebServer {
         
         Facade facade = Facade.getFacade(true);
         
-        Profile profile1 = new Profile("MichaelLarsen", "larsen_max@hotmail.com", "1234", null, "student");
-        facade.addProfileFromGSON(gson.toJson(profile1));
-        Profile profile2 = new Profile("EmilAndreas", "larsen_max@hotmail.com", "1234", null, "student");
-        facade.addProfileFromGSON(gson.toJson(profile2));
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
+        Profile profile1 = new Profile("MichaelLarsen", "larsen_max@hotmail.com", "1234", sqlDate, "student");
+        facade.addProfileFromGSON(gson.toJson(profile1));
+        Profile profile2 = new Profile("EmilAndreas", "larsen_max@hotmail.com", "1234", sqlDate, "student");
+        facade.addProfileFromGSON(gson.toJson(profile2));
+        System.out.println("Profile1: " + profile1);
+        System.out.println("Profile2: " + profile2);
         HttpServer server = HttpServer.create(new InetSocketAddress(ip, port), 0);
         server.createContext("/Profiles", new ProfileHandler());
         server.setExecutor(null); // Use the default executor

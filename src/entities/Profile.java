@@ -5,6 +5,7 @@
  */
 package entities;
 
+import com.google.gson.annotations.Expose;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
@@ -22,22 +23,28 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p")
 public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Expose
     @Column(length = 40)
     private String user_name;
     
+    @Expose
     @Column(length = 40)
     private String email;
     
+    @Expose
     @Column(length = 40)
     private String pw;
     
+    @Expose
     @Column(length = 40)
     private Date created;
     
+    @Expose
     @Column(length = 40)
     private String role;
     
@@ -45,7 +52,7 @@ public class Profile implements Serializable {
     }
 
     public Profile(String userName, String email, String pw, Date created, String role) {
-        this.user_name = user_name;
+        this.user_name = userName;
         this.email = email;
         this.pw = pw;
         this.created = created;
@@ -56,8 +63,8 @@ public class Profile implements Serializable {
         return email;
     }
 
-    public void setE_mail(String e_mail) {
-        this.email = e_mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPw() {
@@ -120,7 +127,7 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return "{\"user_name\":" + "\"" + user_name + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + pw + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role +"}";
+        return "{\"user_name\":" + "\"" + user_name + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + pw + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role + "\"" +"}";
     }
     
 }
