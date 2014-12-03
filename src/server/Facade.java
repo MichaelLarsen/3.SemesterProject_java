@@ -43,7 +43,7 @@ public class Facade implements FacadeInterface {
     }
 
     @Override
-    public Profile getProfileAsJSON(String json) {
+    public Profile authenticator(String json) {
        EntityManager em = emf.createEntityManager();
        Profile profile = gson.fromJson(json, Profile.class);
        

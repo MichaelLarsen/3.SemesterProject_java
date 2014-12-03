@@ -55,7 +55,7 @@ class ProfileHandler implements HttpHandler {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
                     BufferedReader br = new BufferedReader(isr);
                     String jsonQuery = br.readLine();
-                    Profile profile = facade.getProfileAsJSON(jsonQuery);
+                    Profile profile = facade.authenticator(jsonQuery);
                     response = gson.toJson(profile);
                 }
                 catch (IllegalArgumentException iae) {
