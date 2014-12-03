@@ -33,7 +33,7 @@ class ProfileHandler implements HttpHandler {
       String response = "";
         int status = 200;
 
-
+        System.out.println(he.getRequestBody());
         String method = he.getRequestMethod().toUpperCase();
 
         switch (method) {
@@ -70,6 +70,7 @@ class ProfileHandler implements HttpHandler {
         }
         he.getResponseHeaders().add("Content-Type", "application/json");
         he.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+        he.getResponseHeaders().add("Access-Control-Allow-Headers", "*");
         he.sendResponseHeaders(status, 0);
         try (OutputStream os = he.getResponseBody()) {
             os.write(response.getBytes());
