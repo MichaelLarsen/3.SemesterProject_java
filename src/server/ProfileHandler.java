@@ -51,6 +51,7 @@ class ProfileHandler implements HttpHandler {
                 break;
         }
         he.getResponseHeaders().add("Content-Type", "application/json");
+        he.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
         he.sendResponseHeaders(status, 0);
         try (OutputStream os = he.getResponseBody()) {
             os.write(response.getBytes());
