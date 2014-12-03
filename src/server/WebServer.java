@@ -38,7 +38,7 @@ public class WebServer {
         System.out.println("Profile1: " + profile1);
         System.out.println("Profile2: " + profile2);
         HttpServer server = HttpServer.create(new InetSocketAddress(ip, port), 0);
-        server.createContext("/Profiles", new ProfileHandler());
+        server.createContext("/authenticate", new ProfileHandler());
         server.setExecutor(null); // Use the default executor
         server.start();
         System.out.println("Started the server, listening on:");

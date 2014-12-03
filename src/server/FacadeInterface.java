@@ -8,6 +8,6 @@ import entities.Profile;
  */
 public interface FacadeInterface {
     public String getProfilesAsJSON();
-    public String getProfileAsJSON(long id);
+    public Profile getProfileAsJSON(String json);
     public Profile addProfileFromGSON(String json);
 }

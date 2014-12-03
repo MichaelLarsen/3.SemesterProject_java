@@ -8,6 +8,7 @@ package server;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import entities.Profile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,6 +48,23 @@ class ProfileHandler implements HttpHandler {
                 catch (Exception e) {
                     response = e.getMessage();
                     status = 404;
+                }
+                break;
+                case "POST":
+                try {
+                    InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
+                    BufferedReader br = new BufferedReader(isr);
+                    String jsonQuery = br.readLine();
+                    Profile profile = facade.getProfileAsJSON(jsonQuery);
+                    response = gson.toJson(profile);
+                }
+                catch (IllegalArgumentException iae) {
+                    status = 400;
+                    response = iae.getMessage();
+                }
+                catch (IOException e) {
+                    status = 500;
+                    response = "Internal Server Problem";
                 }
                 break;
         }

@@ -32,15 +32,15 @@ public class Profile implements Serializable {
     @Column(length = 40)
     private String user_name;
     
-    @Expose
+
     @Column(length = 40)
     private String email;
     
-    @Expose
+
     @Column(length = 40)
     private String pw;
     
-    @Expose
+
     @Column(length = 40)
     private Date created;
     
