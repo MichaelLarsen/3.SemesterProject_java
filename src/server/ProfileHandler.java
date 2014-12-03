@@ -33,7 +33,6 @@ class ProfileHandler implements HttpHandler {
       String response = "";
         int status = 200;
 
-        System.out.println(he.getRequestBody());
         String method = he.getRequestMethod().toUpperCase();
 
         switch (method) {
@@ -53,10 +52,12 @@ class ProfileHandler implements HttpHandler {
                 case "POST":
                 try {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
+                    System.out.println("isr: " + isr);
                     BufferedReader br = new BufferedReader(isr);
                     String jsonQuery = br.readLine();
-                    Profile profile = facade.authenticator(jsonQuery);
-                    response = gson.toJson(profile);
+                    System.out.println("jsongQuery: " + jsonQuery);
+                    String profileStr = facade.authenticator(jsonQuery);
+                    response = profileStr;
                 }
                 catch (IllegalArgumentException iae) {
                     status = 400;
@@ -69,8 +70,8 @@ class ProfileHandler implements HttpHandler {
                 break;
         }
         he.getResponseHeaders().add("Content-Type", "application/json");
-        he.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-        he.getResponseHeaders().add("Access-Control-Allow-Headers", "*");
+        he.getResponseHeaders().add("Access-Control-Allow-Origin", "*"); //Gør så andre sider kan bruge denne
+        he.getResponseHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); //Sørger for vi kan bruge request-data
         he.sendResponseHeaders(status, 0);
         try (OutputStream os = he.getResponseBody()) {
             os.write(response.getBytes());

@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
@@ -20,7 +21,11 @@ import javax.persistence.NamedQuery;
  * @author Michael, Sebastian, Emil og Andreas
  */
 @Entity
-@NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p")
+@NamedQueries({
+    @NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p"),
+    @NamedQuery(name = "Profile.authenticate", query = "SELECT p FROM Profile p WHERE p.username LIKE :username and p.password LIKE :password"),
+})
+
 public class Profile implements Serializable {
     private static final long serialVersionUID = 1L;
     @Expose
@@ -29,16 +34,16 @@ public class Profile implements Serializable {
     private Long id;
     
     @Expose
-    @Column(length = 40)
-    private String user_name;
+    @Column(name = "user_name", length = 40)
+    private String username;
     
-
+    @Expose
     @Column(length = 40)
     private String email;
     
 
-    @Column(length = 40)
-    private String pw;
+    @Column(name = "pw", length = 40)
+    private String password;
     
 
     @Column(length = 40)
@@ -52,9 +57,9 @@ public class Profile implements Serializable {
     }
 
     public Profile(String userName, String email, String pw, Date created, String role) {
-        this.user_name = userName;
+        this.username = userName;
         this.email = email;
-        this.pw = pw;
+        this.password = pw;
         this.created = created;
         this.role = role;
     }
@@ -68,11 +73,11 @@ public class Profile implements Serializable {
     }
 
     public String getPw() {
-        return pw;
+        return password;
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
+        this.password = pw;
     }
 
     public Date getCreated() {
@@ -92,11 +97,11 @@ public class Profile implements Serializable {
     }
 
     public String getUsername() {
-        return user_name;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.user_name = username;
+        this.username = username;
     }
 
     public Long getId() {
@@ -127,7 +132,7 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return "{\"user_name\":" + "\"" + user_name + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + pw + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role + "\"" +"}";
+        return "{\"user_name\":" + "\"" + username + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + password + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role + "\"" +"}";
     }
     
 }

@@ -43,17 +43,17 @@ public class Facade implements FacadeInterface {
     }
 
     @Override
-    public Profile authenticator(String json) {
-       EntityManager em = emf.createEntityManager();
-       Profile profile = gson.fromJson(json, Profile.class);
-       
+    public String authenticator(String json) {
+        Profile profile = gson.fromJson(json, Profile.class);
+        EntityManager em = emf.createEntityManager();
         try {
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Query query = em.createNamedQuery("Profile.authenticate").setParameter("username", profile.getUsername());
+            Collection<Profile> profileList = query.getResultList();
+            String profiles = gson.toJson(profileList);  
+            return profiles;
         } finally {
             em.close();
-        }
-        return profile;
+        }        
     }
 
     @Override

@@ -8,6 +8,6 @@ import entities.Profile;
  */
 public interface FacadeInterface {
     public String getProfilesAsJSON();
-    public Profile authenticator(String json);
+    public String authenticator(String json);
     public Profile addProfileFromGSON(String json);
 }
