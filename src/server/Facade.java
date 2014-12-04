@@ -47,9 +47,10 @@ public class Facade implements FacadeInterface {
         Profile profile = gson.fromJson(json, Profile.class);
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Profile.authenticate").setParameter("username", profile.getUsername());
+            Query query = em.createNamedQuery("Profile.authenticate").setParameter("username", profile.getUsername()).setParameter("password", profile.getPw());
             Collection<Profile> profileList = query.getResultList();
-            String profiles = gson.toJson(profileList);  
+            String profiles = gson.toJson(profileList.iterator().next()); 
+            System.out.println("ProfilesToSend: " + profiles);
             return profiles;
         } finally {
             em.close();

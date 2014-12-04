@@ -52,10 +52,8 @@ class ProfileHandler implements HttpHandler {
                 case "POST":
                 try {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
-                    System.out.println("isr: " + isr);
                     BufferedReader br = new BufferedReader(isr);
                     String jsonQuery = br.readLine();
-                    System.out.println("jsongQuery: " + jsonQuery);
                     String profileStr = facade.authenticator(jsonQuery);
                     response = profileStr;
                 }

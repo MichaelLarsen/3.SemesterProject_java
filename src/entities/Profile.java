@@ -23,7 +23,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p"),
-    @NamedQuery(name = "Profile.authenticate", query = "SELECT p FROM Profile p WHERE p.username LIKE :username and p.password LIKE :password"),
+    @NamedQuery(name = "Profile.authenticate", query = "SELECT p.id, p.username, p.role FROM Profile p WHERE p.username = :username AND p.password = :password"),
 })
 
 public class Profile implements Serializable {
@@ -37,15 +37,15 @@ public class Profile implements Serializable {
     @Column(name = "user_name", length = 40)
     private String username;
     
-    @Expose
+    
     @Column(length = 40)
     private String email;
     
-
+    @Expose
     @Column(name = "pw", length = 40)
     private String password;
     
-
+    
     @Column(length = 40)
     private Date created;
     
@@ -56,10 +56,10 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    public Profile(String userName, String email, String pw, Date created, String role) {
+    public Profile(String userName, String email, String password, Date created, String role) {
         this.username = userName;
         this.email = email;
-        this.password = pw;
+        this.password = password;
         this.created = created;
         this.role = role;
     }
@@ -76,8 +76,8 @@ public class Profile implements Serializable {
         return password;
     }
 
-    public void setPw(String pw) {
-        this.password = pw;
+    public void setPw(String password) {
+        this.password = password;
     }
 
     public Date getCreated() {
@@ -132,7 +132,7 @@ public class Profile implements Serializable {
 
     @Override
     public String toString() {
-        return "{\"user_name\":" + "\"" + username + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"pw\":" + "\"" + password + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role + "\"" +"}";
+        return "{\"user_name\":" + "\"" + username + "\"" + ",\"email\":" + "\"" + email + "\"" + ",\"password\":" + "\"" + password + "\"" + ",\"created\":" + "\"" + created + "\"" + ",\"role\":" + "\"" + role + "\"" +"}";
     }
     
 }
