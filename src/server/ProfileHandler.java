@@ -34,9 +34,11 @@ class ProfileHandler implements HttpHandler {
         int status = 200;
 
         String method = he.getRequestMethod().toUpperCase();
+        System.out.println("method: " + method);
 
         switch (method) {
             case "GET":
+                System.out.println("GET");
                 try {
                     response = facade.getProfilesAsJSON();
                 }
@@ -50,10 +52,12 @@ class ProfileHandler implements HttpHandler {
                 }
                 break;
                 case "POST":
+                    System.out.println("POST");
                 try {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
                     BufferedReader br = new BufferedReader(isr);
                     String jsonQuery = br.readLine();
+                    System.out.println("josnQuery: " + jsonQuery);
                     String profileStr = facade.authenticator(jsonQuery);
                     response = profileStr;
                 }
