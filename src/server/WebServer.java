@@ -31,11 +31,11 @@ public class WebServer {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
-        Profile profile1 = new Profile("MichaelLarsen", "larsen_max@hotmail.com", "1234", sqlDate, "student");
+        Profile profile1 = new Profile("s", "larsen_max@hotmail.com", "s", sqlDate, "student");
         facade.addProfileFromGSON(gson.toJson(profile1));
-        Profile profile2 = new Profile("EmilAndreas", "larsen_max@hotmail.com", "1234", sqlDate, "student");
+        Profile profile2 = new Profile("e", "larsen_max@hotmail.com", "e", sqlDate, "student");
         facade.addProfileFromGSON(gson.toJson(profile2));
-        Profile profile3 = new Profile("Sebucci", "Sebu@hotmale.com", "sexy13", sqlDate, "admin");
+        Profile profile3 = new Profile("m", "Sebu@hotmail.com", "m", sqlDate, "admin");
         facade.addProfileFromGSON(gson.toJson(profile3));
         System.out.println("Profile1: " + profile1);
         System.out.println("Profile2: " + profile2);
