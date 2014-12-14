@@ -81,10 +81,10 @@ public class Facade implements FacadeInterface {
         
         Profile prfl = em.find(Profile.class, profile.getId());
         System.out.println("prfl: " + prfl);
-        prfl.setPw(profile.getPw());
+        
         em.getTransaction().begin();
         try {
-            em.persist(prfl);
+            prfl.setPw(profile.getPw());
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
