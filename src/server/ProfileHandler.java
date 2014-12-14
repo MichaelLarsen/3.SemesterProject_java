@@ -8,7 +8,6 @@ package server;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import entities.Profile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -57,7 +56,7 @@ public class ProfileHandler implements HttpHandler {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
                     BufferedReader br = new BufferedReader(isr);
                     String jsonQuery = br.readLine();
-                    System.out.println("josnQuery: " + jsonQuery);
+                    System.out.println("jsonQuery: " + jsonQuery);
                     String profileStr = facade.authenticator(jsonQuery);
                     response = profileStr;
                 }
