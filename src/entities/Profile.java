@@ -24,6 +24,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name = "Profile.getProfileAll", query = "SELECT p FROM Profile p"),
     @NamedQuery(name = "Profile.authenticate", query = "SELECT p.id, p.username, p.role FROM Profile p WHERE p.username = :username AND p.password = :password"),
+    @NamedQuery(name = "Profile.findProfile", query = "SELECT p FROM Profile p WHERE p.username = :username"),
 })
 
 public class Profile implements Serializable {
