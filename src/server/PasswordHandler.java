@@ -35,8 +35,8 @@ public class PasswordHandler implements HttpHandler{
         System.out.println("method: " + method);
 
         switch (method) {
-                case "POST":
-                    System.out.println("POST");
+                case "PUT":
+                    System.out.println("PUT");
                 try {
                     InputStreamReader isr = new InputStreamReader(he.getRequestBody(), "utf-8");
                     BufferedReader br = new BufferedReader(isr);
