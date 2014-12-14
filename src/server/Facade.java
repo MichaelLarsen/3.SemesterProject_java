@@ -50,7 +50,6 @@ public class Facade implements FacadeInterface {
             Query query = em.createNamedQuery("Profile.authenticate").setParameter("username", profile.getUsername()).setParameter("password", profile.getPw());
             Collection<Profile> profileList = query.getResultList();
             String profiles = gson.toJson(profileList.iterator().next()); 
-            System.out.println("ProfilesToSend: " + profiles);
             return profiles;
         } finally {
             em.close();
@@ -72,5 +71,20 @@ public class Facade implements FacadeInterface {
             em.close();
         }
         return profile;
+    }
+
+    public String changePassword(String json) {
+      System.out.println("json: "+ json);
+      Profile profile = gson.fromJson(json, Profile.class);
+        EntityManager em = emf.createEntityManager();
+        System.out.println("changePassword: " + profile);
+        try {
+            Query query = em.createNamedQuery("Profile.changePassword").setParameter("username", profile.getUsername()).setParameter("password", profile.getPw());
+            Collection<Profile> profileList = query.getResultList();
+            String profiles = gson.toJson(profileList.iterator().next()); 
+            return profiles;
+        } finally {
+            em.close();
+        }   
     }
 }
