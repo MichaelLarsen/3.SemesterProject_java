@@ -18,7 +18,7 @@ import java.io.OutputStream;
  *
  * @author Michael, Sebastian, Emil og Andreas
  */
-class ProfileHandler implements HttpHandler {
+public class ProfileHandler implements HttpHandler {
 
     private final Facade facade;
     private final Gson gson;

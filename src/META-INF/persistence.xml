@@ -13,7 +13,7 @@
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.query.timeout" value="10000"/>
       <!--<property name="javax.persistence.jdbc.ReadTimeout" value="50000"/>-->
-      <!--      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/JavaDB"/>
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/JavaDB"/>
       <property name="javax.persistence.jdbc.password" value="mla"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.user" value="mla"/>
